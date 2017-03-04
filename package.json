@@ -1,0 +1,66 @@
+{
+  "name": "vma_system",
+  "version": "0.0.1",
+  "description": "New API with front-end and database Postgres Integration",
+  "main": "app.js",
+  "scripts": {
+    "start": "set NODE_ENV=development && node app.js",
+    "update": "set NODE_ENV=development && npm install && npm prune && npm run db:migrate",
+    "production": "set NODE_ENV=production && node app.js",
+    "test": "npm run lint && set NODE_ENV=test && mocha -R spec -t 30000 test/**/*.js",
+    "coverage": "set NODE_ENV=test && istanbul cover ./node_modules/mocha/bin/_mocha -- -R dot -t 30000 test/**/*.js",
+    "xunit": "set NODE_ENV=test && mocha --timeout 30000 -R xunit test/**/*.js > xunit.xml",
+    "lint": "standard",
+    "db:create": "migrate -c ./ --template-file ./migrations/.template create",
+    "db:migrate": "migrate -c ./"
+  },
+  "standard": {
+    "ignore": [
+      "node_modules",
+      "gui/assets/lib"
+    ],
+    "globals": [
+      "app",
+      "$",
+      "angular",
+      "CONFIG",
+      "log",
+      "_",
+      "FormData",
+      "describe",
+      "it",
+      "before",
+      "ENV",
+      "async",
+      "confirm",
+      "after"
+    ]
+  },
+  "author": "David William Rigamonte",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "express-minify": "^0.2.0",
+    "express-session": "^1.14.2",
+    "https": "^1.0.0",
+    "lodash": "^4.17.4",
+    "migrate": "^0.2.3",
+    "pg": "^6.1.2",
+    "pgtools": "^0.2.3",
+    "session-memory-store": "^0.2.2",
+    "toobusy-js": "^0.5.1",
+    "winston": "^2.3.0"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "morgan": "^1.7.0",
+    "should": "^11.1.2",
+    "standard": "^8.6.0"
+  }
+}
